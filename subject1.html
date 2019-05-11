@@ -1,0 +1,497 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Chapter_5</title>
+    <!-- 본문에서는 다루지 않은 코드입니다. 부록 A에서 살펴보는 플러그인입니다. -->
+    <!-- 구 버전의 인터넷 익스플로러에서 HTML5 태그를 인식하게 합니다. -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- 초기화 -->
+
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+    <!-- 초기화 -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Titillium Web', sans-serif;
+            background-image : url('background2.PNG');
+            background-position-x : left;
+            background-position-y : center;
+            background-repeat : no-repeat;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            border: 0;
+        }
+    </style>
+    <!-- 헤더 -->
+    <style>
+        #main_header {
+            /* 중앙 정렬*/
+            width: 960px;
+            margin: 0 auto;
+            /* 절대 좌표 */
+            height: 160px;
+            position: relative;
+        }
+
+            #main_header > #title {
+                position: absolute;
+                left: 20px;
+                top: 30px;
+            }
+
+            #main_header > #main_gnb {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
+            #main_header > #main_lnb {
+                position: absolute;
+                right: 0;
+                bottom: 10px;
+            }
+    </style>
+    <!-- 타이틀 -->
+    <style>
+        #title {
+            font-family: 'Titillium Web', sans-serif;
+        }
+    </style>
+    <!-- 메뉴(1) -->
+    <style>
+        #main_gnb > ul {
+            overflow: hidden;
+        }
+
+            #main_gnb > ul > li {
+                float: left;
+            }
+
+                #main_gnb > ul > li > a {
+                    display: block;
+                    padding: 2px 10px;
+                    border: 1px solid #868fb5;
+                    
+                }
+
+                    #main_gnb > ul > li > a:hover {
+                        background:#c7c4e4;
+                        color: white;
+                    }
+
+                #main_gnb > ul > li:first-child > a {
+                    border-radius: 10px 0 0 10px;
+                }
+
+                #main_gnb > ul > li:last-child > a {
+                    border-radius: 0 10px 10px 0;
+                }
+    </style>
+    <!-- 메뉴(2) -->
+    <style>
+        #main_lnb > ul {
+            overflow: hidden;
+        }
+
+            #main_lnb > ul > li {
+                float: left;
+            }
+
+                #main_lnb > ul > li > a {
+                    display: block;
+                    padding: 10px 20px;
+                    border: 1px solid #868fb5 ;
+                }
+
+                    #main_lnb > ul > li > a:hover {
+                        background: #c7c4e4;
+                        color: white;
+                    }
+
+                #main_lnb > ul > li:first-child > a {
+                    border-radius: 10px 0 0 10px;
+                }
+
+                #main_lnb > ul > li:last-child > a {
+                    border-radius: 0 10px 10px 0;
+                }
+    </style>
+    <!-- 콘텐츠 -->
+    <style>
+        #content {
+            /* 중앙 정렬 */
+            width: 960px;
+            margin: 0 auto;
+            /* 수평 레이아웃 구성 */
+            overflow: hidden;
+            
+        }
+
+            #content > #main_section {
+                width: 710px;
+                float: left;
+                
+            }
+
+            #content > #main_aside {
+                width: 240px;
+                float: right;
+                
+            }
+    </style>
+    <!-- 본문 -->
+    <style>
+        #main_section > article.main_article {
+            margin-bottom: 10px;
+            padding: 20px;
+            border: 1px solid #868fb5;
+            border-radius: 10px 10px 10px 10px;
+        }
+
+        #right_bar {
+            position: fixed;
+            top: 400px;
+            right: 0px;
+        }
+
+    </style>
+    <!-- 사이드 -->
+    <style>
+        /* 첫 번째 탭 */
+        input:nth-of-type(1) {
+            display: none;
+        }
+
+            input:nth-of-type(1) ~ div:nth-of-type(1) {
+                display: none;
+            }
+
+            input:nth-of-type(1):checked ~ div:nth-of-type(1) {
+                display: block;
+            }
+
+        /* 두 번째 탭 */
+        input:nth-of-type(2) {
+            display: none;
+        }
+
+            input:nth-of-type(2) ~ div:nth-of-type(2) {
+                display: none;
+            }
+
+            input:nth-of-type(2):checked ~ div:nth-of-type(2) {
+                display: block;
+            }
+
+            /* 세 번째 탭 */
+        input:nth-of-type(3) {
+            display: none;
+        }
+
+            input:nth-of-type(3) ~ div:nth-of-type(3) {
+                display: none;
+            }
+
+            input:nth-of-type(3):checked ~ div:nth-of-type(3) {
+                display: block;
+            }
+
+        /* 탭 모양 구성 */
+        section.buttons {
+            overflow: hidden;
+        }
+
+            section.buttons > label {
+                /* 수평 정렬 */
+                display: block;
+                float: left;
+                /* 크기 및 글자 위치 지정*/
+                width: 80px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                /* 테두리 지정 */
+                box-sizing: border-box;
+                border: 1px solid #868fb5;
+                /* 색상 지정*/
+                background: white;
+                color: black;
+            }
+
+
+        input:nth-of-type(1):checked ~ section.buttons > label:nth-of-type(1) {
+            background: #c7c4e4;
+            color: white;
+        }
+
+        input:nth-of-type(2):checked ~ section.buttons > label:nth-of-type(2) {
+            background: #c7c4e4;
+            color: white;
+        }
+
+        input:nth-of-type(3):checked ~ section.buttons > label:nth-of-type(3) {
+            background: #c7c4e4;
+            color: white;
+        }
+
+
+
+    </style>
+    <!-- 목록 -->
+    <style>
+        .item {
+            overflow: hidden;
+            padding: 10px;
+            border: 1px solid #868fb5;
+            border-top: none;
+            
+        }
+
+        .thumbnail {
+            float: left;
+        }
+
+        .description {
+            float: left;
+            margin-left: 10px;
+        }
+
+            .description > strong {
+                display: block;
+                width: 120px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+    </style>
+    <!-- 푸터 -->
+    <style>
+        #main_footer {
+            /* 중앙 정렬 */
+            width: 960px;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            /* 테두리 */
+            box-sizing: border-box;
+            padding: 10px;
+            border: 1px solid #868fb5;
+            border-radius: 10px 10px 10px 10px;
+            /* 글자 정렬 */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <a id=Top></a>
+    <header id="main_header">
+        <div id="title">
+            <h1>Mic Finder</h1>
+        </div>
+        <nav id="main_gnb">
+            <ul>
+                <li><a onclick="javascript:btn1()"> Mail</a>
+                <script>function btn1(){ alert('address = tkadk2005@naver.com'); }</script></li>
+                <li><a onclick="javascript: btn2()"> Facebook</a>
+                <script>function btn2() { alert('https://www.facebook.com/profile.php?id=100004899180023'); }</script></li>
+                <li><a onclick="javascript:btn3()"> Kakaotalk</a>
+                <script>function btn3(){ alert('ID= tkadk2005'); }</script></li>
+            </ul>
+        </nav>
+        <nav id="main_lnb">
+            <ul>
+                <li><a onclick="javascript:btn4()"> Dynamic</a>
+                <script>function btn4(){ alert('소리 준비중'); }</script></li>
+                <li><a onclick="javascript: btn4()"> Condenser</a>
+                <script>function btn4() { alert('소리 준비중'); }</script></li>
+                <li><a onclick="javascript: btn4()"> Ribbon</a>
+                <script>function btn4() { alert('소리 준비중'); }</script></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="content">
+        <section id="main_section">
+            <article class="main_article">
+                <h1>Dynamic Mic</h1>
+                <p>
+                    <img src="./dynamic.PNG" style="width:30%; height:30%; float : left; margin: 10px 10px 10px 10px" />
+                    보통 막대기 위에 하나의 공이 달린것 같이 생겼다. 이러한 구체는 안의 캡슐을 보호하는
+                    역할을 하며 일명 팝핑(Popping) 이펙트를 감쇄시키는 역할을 하기도 한다.<br />
+                    다이나믹 마이크는 견고하고 쓸 수 있는 용도의 범위가 아주 다양해 범용성으로는 다른 타입들에 비해 높은 점수를
+                    받고 있다. <br />
+                    따라서, 라이브 공연때나 레코딩용등 어떤 용도에서도 안정적인 성능을 보여준다.
+                    상대적으로 저렴하기도 하며 또한, 디스토션 없이 고 출력의 음량을 받아들일 수 있다.<br />
+                    기타 앰프나 드럼 등 다양한 리얼 악기들의 녹음에 쓰이고도 있다.
+                </p>
+            </article>
+            <article class="main_article">
+                <h1>Condenser Mic</h1>
+                <p>
+                    <img src="./condenser.PNG" style="width:30%; height:30%; float : left; margin: 10px 10px 10px 10px" />
+                    마이크에 달려있는 칸막이(diaphragm)의 크기에 따라 톤을 바꿀 수 있다.(디테일 혹은 따뜻함)
+                    일반적으로 콘덴서 마이크는 깔끔하고 중립적이며 정확한 사운드를 들려주는 것들이 대부분이다.<br />
+                    다양한 주파수들을 정확히 받아들여 주지만 특히 살짝은 고주파수 대에 민감하다고 볼 수 있다.
+                    많은 컨덴서 마이크는 극점(polarity) 바꿀 수 있는 옵션을 제공하고 있다.<br />
+                    그리고 꼭 그런것은 아니지만 보통 콘덴서 마이크의 구조상 다른 타입의 마이크에 비해 가격대가 비싼 경우가 많다.<br />
+                    또한 건전지나 48V의 팬텀 파워가 필요한 경우가 대부분이다.(팬텀 파워는 많은 오디오 인터페이스 및 믹싱보드에서 지원한다.)<br />
+                    어쿠스틱 악기나 보컬 등 디테일을 살려야 하는 악기들의 녹음에 유리하다.<br />
+                    또한 콘덴서 마이크는 Tube 혹은 Fet 방식으로 나뉜다.
+                    (fet보다 tube 마이크가 좀 더 소리가 굵으며 따뜻한 경향이 있다.)
+                </p>
+            </article>
+            <article class="main_article">
+                <h1>Ribbon Mic</h1>
+                <p>
+                    <img src="./ribbon.PNG" style="width:30%; height:350px; float : left; margin: 10px 10px 10px 10px" />
+                    리본 마이크는 사실상 매끄러운 소리의 그리고 미묘한 소리의 다이나믹 마이크라고 볼 수 있다.<br />
+                    50년대의 3차원 빈티지 사운드를 상기시키며 고주파수 대역이 많은 브라스 사운드나 소리가
+                    비교적 고음이 많이 귀에 거슬릴 수 있는 소리들을 녹음할 때 그힘을 발휘한다.(상대적으로 낮은 고주파수 감도)
+                    낮은 아웃풋 레벨을 보여줌으로서 상대적으로 높은 프리앰프의 게인을 필요로 한다.(노이즈가 좀 많을 수도 있다.) <br />
+                    가까운 거리에서 리본 마이크를 이용할 시 특유의 따뜻함을 이끌어 낼 수 있으나 그에대한 부작용으로
+                    베이스 부밍 현상이 있을 수 있다.<br />
+                    노이즈가 쉽게 낄 수 있어 외부 환경에서 이용하는 것은 좋지 않으며 손상되기 쉬운 구조로 사용할 때 조심히 다루어야 한다.<br />
+                    가격대가 낮은편은 아니다.
+                    그외에도 USB와 바로 DAW혹은 오디오 편집 프로그램에 바로 연결할 수 있는 USB마이크 등이 존재한다.
+                </p>
+            </article>
+        </section>
+        <aside id="main_aside">
+            <input id="first" type="radio" name="tab" checked="checked" />
+            <input id="second" type="radio" name="tab" />
+            <input id="third" type="radio" name="tab" />
+            <section class="buttons">
+                <label for="first">Dynamic</label>
+                <label for="second">Condenser</label>
+                <label for="third">Ribbon</label>
+            </section>
+            <div class="tab_item">
+                <ul>
+                    <li class="item">
+                        <a href="https://smartstore.naver.com/tbmall/products/4483790531?NaPm=ct%3Djvjchqwo%7Cci%3D571b13a0e2111588a17084cd31648fe641d406e6%7Ctr%3Dslc%7Csn%3D424651%7Cic%3D%7Chk%3D29cf783b35ad0fd3f387ebb931cd36f798aec722" target=_blank>
+                            <div class="thumbnail">
+                                <img src="./go.PNG" style="width:30px; height:30px;"/>
+                            </div>
+                            <div class="description">
+                                <strong>Shure SM58-CN</strong><p> 최저가 11만원 </p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="http://www.buyself.co.kr/shop/ProdDetail.php?PMInc=7054780&NaPm=ct%3Djvjcnq6o%7Cci%3D7bec33a2635949cf258072a1e8c4f0aa9561c5df%7Ctr%3Dslsl%7Csn%3D121210%7Chk%3D4bda9ade729b4e4c2273f65ab3af4a3612e04254" target=_blank>
+                            <div class="thumbnail">
+                                <img src="./go.PNG" style="width:30px; height:30px;" />
+                            </div>
+                            <div class="description">
+                                <strong>Audio-Technica ATR2100</strong><p>최저가 8만원</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="http://amazoncart.co.kr/shop/item.php?it_id=B0010H82WA&NaPm=ct%3Djvjcptsw%7Cci%3Daaac28d34b63d31660adef8442b5f8c557adf9c4%7Ctr%3Dslsl%7Csn%3D755442%7Chk%3D771a8786f612dfb94f1f16fba0e3658506b8323e" target=_blank>
+                            <div class="thumbnail">
+                                <img src="./go.PNG" style="width:30px; height:30px;" />
+                            </div>
+                            <div class="description">
+                                <strong>Sennheiser MD-42 DynamicMic</strong><p>최저가 32만원</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab_item">
+                <ul>
+                    <li class="item">
+                        <a href="http://item.gmarket.co.kr/DetailView/Item.asp?goodscode=260965512&GoodsSale=Y&jaehuid=200001169&NaPm=ct%3Djvjcsfxs%7Cci%3D6c46a8fad45f31721601790599c1c228d7943c06%7Ctr%3Dslc%7Csn%3D24%7Chk%3D6e430854428f49c3a6b039d575adc36a7c0bed48" target=_blank>
+                            <div class="thumbnail">
+                                <img src="./go.PNG" style="width:30px; height:30px;" />
+                            </div>
+                            <div class="description">
+                                <strong>Shure VP88</strong><p>최저가 93만원</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="https://www.coupang.com/vp/products/22423436?src=1032001&spec=10305201&addtag=400&ctag=22423436&lptag=87042356&itime=20190511191615&wPcid=15519597406236936677465&wRef=cr2.shopping.naver.com&wTime=20190511191615&redirect=landing&offUniversalLink=true&itemId=87042356&NaPm=ct%3Djvjctu3c%7Cci%3De98d97fbd6da08ebdedd8b6d34ae3ec8ab4ea62c%7Ctr%3Dslc%7Csn%3D613264%7Chk%3D81dfaf3a4dc9e488dac51792747885b8669e37bb&forceBypass=Y&vendorItemId=3148290948&sid=Naver_Shopping&pageType=PRODUCT&pageValue=22423436&isAddedCart=" target=_blank>
+                            <div class="thumbnail">
+                                <img src="./go.PNG" style="width:30px; height:30px;" />
+                            </div>
+                            <div class="description">
+                                <strong>MXL 440</strong><p>최저가 7만원</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="http://japanbang.kr/mall/view/goodsNo/287510?NaPm=ct%3Djvjcw674%7Cci%3De34fbd049a85a0dc97a9684a527b7b3ca301a0de%7Ctr%3Dslsl%7Csn%3D878060%7Chk%3D469980857324204dded7fb696df95338be9ab6aa" target=_blank>
+                            <div class="thumbnail">
+                                <img src="./go.PNG" style="width:30px; height:30px;" />
+                            </div>
+                            <div class="description">
+                                <strong>Audix ADX40</strong><p>최저가 21만원</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab_item">
+                <ul>
+                    <li class="item">
+                        <a href="http://item.gmarket.co.kr/DetailView/Item.asp?goodscode=569868587&GoodsSale=Y&jaehuid=200001169&NaPm=ct%3Djvjd21m8%7Cci%3D5b049fe73775a3a5867e9161226808351a154397%7Ctr%3Dslc%7Csn%3D24%7Chk%3D184fe4939a7da90bc71cdfb9ba8a212ca08e04d5" target=_blank>
+                            <div class="thumbnail">
+                                <img src="./go.PNG" style="width:30px; height:30px;" />
+                            </div>
+                            <div class="description">
+                                <strong> MXL R77</strong><p>최저가 65만원</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="http://www.ontheway.co.kr/shop/ProdDetail.php?PMInc=13352203&NaPm=ct%3Djvjczn74%7Cci%3D64beb01c4d46e96a4c6badc614dfd3cabf82df2f%7Ctr%3Dslsl%7Csn%3D535248%7Chk%3D151eb06e998263cfde50f13bb774f81028041643" target=_blank>
+                            <div class="thumbnail">
+                                <img src="./go.PNG" style="width:30px; height:30px;" />
+                            </div>
+                            <div class="description">
+                                <strong>Nady RSM-5</strong><p>최저가 11만원</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="http://www.higlobal.kr/goods/content.asp?guid=311401&NaPm=ct%3Djvjd11co%7Cci%3Dcc02ded1c53530f1d18f0ddbf0fef5b1233a3a14%7Ctr%3Dslsl%7Csn%3D528530%7Chk%3D19e0bd5bc076f3c35d6b967ee1a6218c56c3e154" target=_blank>
+                            <div class="thumbnail">
+                                <img src="./go.PNG" style="width:30px; height:30px;" />
+                            </div>
+                            <div class="description">
+                                <strong>Samson VR88</strong><p>최저가 40만원</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+    <div id="right_bar">
+        <a href=#Top>
+            <img src="./음표.PNG" style="width:50px; height:50px;" />
+                 <p style="color:black; font-family:'Titillium Web', sans-serif;" > top </p >
+        </a>
+
+    </div>
+    <footer id="main_footer">
+        <h3>준비중</h3>
+    </footer>
+</body>
+</html>
